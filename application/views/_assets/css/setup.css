@@ -1,0 +1,65 @@
+.clear		{
+				clear:both;
+			}
+.active		{
+				font-weight:bold;
+			}
+.br			{
+				padding:2px;
+			}
+
+#setup		{
+				width:420px;border:.1em solid gray;
+			}
+
+#step1, #step2, #step3, #step4
+			{
+				padding:10px;display:none;
+			}
+
+#setup #header span
+			{
+				font-size:18px;color:#F7BE81;
+			}
+
+#step1 .heading, #step2 .heading, #step3 .heading, #step4 .heading
+			{
+				font-size:14px;text-align:center;padding:6px;
+			}
+
+#step1 .title, #step2 .title, #step3 .title, #step4 .title
+			{
+				float:left;width:70px;padding:0px 10px 0px 0px;
+			}
+
+#step1 .button, #step2 .button, #step3 .button, #step4 .button
+			{
+				clear:both;text-align:center;padding:8px;
+			}
+#step1 .schedule
+			{
+				width:220px;margin:0 auto;
+			}
+#step2 .schedule
+			{
+				width:182px;float:left;padding-left:14px;
+			}
+#step3 .schedule
+			{
+				width:220px;margin:0 auto;
+			}
+#step4 .schedule
+			{
+				width:280px;margin:0 auto;
+			}
+
+#step2 .schedule .subHeading
+			{
+				font-size:12px;font-weight:bold;padding:0px 0px 4px 0px;
+			}
+
+#step4 .schedule a
+			{
+				width:260px;padding:5px;text-align:center;
+			}
+			

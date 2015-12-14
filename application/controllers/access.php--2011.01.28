@@ -1,0 +1,230 @@
+<?php
+class Access extends Controller
+{
+	
+	function __construct()
+	{
+		parent::Controller();
+		error_reporting(0);
+		$this->pageVars['css'] = array();
+		$this->pageVars['js'] = array();
+		$this->load->helper(array('form', 'url', 'strings', 'fsdate', 'ui'));
+		$this->load->library(array('Auth', 'form_validation'));
+		$this->load->model(array('fatsecret/fsprofile', 'user_model'));
+	}
+	
+	function login()
+	{
+		$viewVars = array();
+		
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|xss_clean');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]|sha1');
+				
+		
+		if ($this->form_validation->run() !== FALSE)
+		{
+			$username = $this->input->post('email');
+			$password = $this->input->post('password');
+			$data = array('email' => $username, 'password' => $password);
+			$user = $this->auth->login($data);
+			if(!$user)
+			{
+				$viewVars['error'] = "Incorrect username or password";
+			}
+			else
+			{
+				if (!$this->auth->isSetup())
+				{
+					//redirect('users/setup/'.$user['username_clean']);
+					redirect('access/signup_step2/'.$user['id']);					
+				}
+				else
+				{										
+					$isupdate=$this->user_model->setLastLogin($user);
+					redirect('users/eating_journal/'.$user['username_clean']);
+				}
+			}
+		}
+		///////////////////////login complete//new sign up
+		if(strlen($this->session->userdata('error'))>0)
+		{
+			$viewVars['error'] = $this->session->userdata('error');
+			$this->session->unset_userdata('error');			
+		}			
+		///////////////////////				
+		return $this->load->view('users/login', $viewVars);
+	}
+
+	function logout()
+	{								
+		$this->auth->logout();				
+		redirect('/login');
+	}
+
+	function register()
+	{
+		$viewVars = array();
+
+		$this->form_validation->set_rules('email',		'Email',		'trim|required|valid_email|xss_clean');
+		$this->form_validation->set_rules('username',	'Username',		'trim|required|min_length[2]|xss_clean');
+		$this->form_validation->set_rules('password',	'Password',		'trim|required|min_length[5]|sha1');
+		$this->form_validation->set_rules('first_name',	'First Name',	'trim|required');
+		$this->form_validation->set_rules('last_name',	'Last Name',	'trim|required');
+
+		if($this->form_validation->run() !== FALSE)
+		{
+			$data = array(	'username'			=> $this->input->post('username'),
+							'username_clean'	=> cleanUsername($this->input->post('username')),
+							'password'			=> $this->input->post('password'),
+							'email'				=> $this->input->post('email'),
+							'first_name'		=> $this->input->post('first_name'),
+							'last_name'			=> $this->input->post('last_name'));//,
+		//					'weekdays'			=> $this->input->post('weekdays'),
+		//					'weekends'			=> $this->input->post('weekends'));
+			$user = $this->auth->register($data);
+			if(empty($user['error']))
+			{
+				$viewVars['error'] = "Thank you for registering. Please log in";
+				return $this->load->view('/users/login', $viewVars);
+			}
+			else
+			{
+				$viewVars['error'] = $user['error'];
+			}
+		} 
+		return $this->load->view('users/register', $viewVars);
+	}
+	function signup()
+	{
+		$viewVars = array();
+		
+		$this->form_validation->set_rules('email',		'Email',		'trim|required|valid_email|xss_clean');
+		
+		if($this->form_validation->run() !== FALSE)
+		{///////////
+			$data = array('email'=> $this->input->post('email'));	
+										
+			$user = $this->user_model->emailverify($data);
+			
+			////////////////////check if user activate his mail or not
+			if(isset($user['step2'])&&strlen($user['step2'])>0)
+			redirect('/access/signup_step2/'.$user['step2'], 'refresh');
+			/////////////////
+			
+			if(empty($user['error']))
+			{
+				$viewVars['error'] = "<b>Thank you for registering. A confirmation email send to your address. Please check it for email verification</b><br />";
+				return $this->load->view('/users/login', $viewVars);
+			}
+			else
+			{
+				$viewVars['error'] = $user['error'];
+			}	
+			
+		}////////////
+		if(strlen($this->session->userdata('error'))>0)
+		{
+			$viewVars['error'] = $this->session->userdata('error');
+			$this->session->unset_userdata('error');			
+		}			
+		///////////////////////
+		return $this->load->view('users/signup/register', $viewVars);
+	}
+	function emailconfirm($confirmcode="")
+	{		
+		$viewVars = array();
+		
+		if(strlen($confirmcode)>0)
+		{
+			$sql="select * from users where activation_code like '".$confirmcode."%' and active=0";			 
+			$user=$this->db->query($sql)->result();
+			if(!empty($user))
+			{					
+				$sql="update users set activation_code='',active=1 where id='".$user[0]->id."'";				 
+				$this->db->query($sql);
+				redirect('/access/signup_step2/'.$user[0]->id, 'refresh');				
+			}
+			else
+			{
+				$viewVars['error'] = "Invalid code";
+				return $this->load->view('users/signup/register', $viewVars);				
+			}						
+		}
+		
+	}
+	function signup_step2($uid)
+	{
+		error_reporting(0);
+		$sql="select * from users where id='".$uid."%'";			 
+		$user=$this->db->query($sql)->result();		
+		$this->viewVars['user'] = $user;
+		$this->viewVars['error']="";		
+
+		///////////////////////////////////////
+		$this->form_validation->set_rules('email',		'Email',		'trim|required|valid_email|xss_clean');
+		$this->form_validation->set_rules('username',	'Username',		'trim|required|min_length[2]|xss_clean');
+		$this->form_validation->set_rules('password',	'Password',		'trim|required|matches[cpassword]|min_length[5]|sha1');
+		$this->form_validation->set_rules('first_name',	'First Name',	'trim|required');
+		$this->form_validation->set_rules('last_name',	'Last Name',	'trim|required');
+
+		if($this->form_validation->run() !== FALSE)
+		{			
+			$birthdateOk=checkdate($_POST['bmonth'],$_POST['bday'],$_POST['byear']);
+			if(!$birthdateOk)
+			$this->viewVars['error']="Birthdate error";
+			
+			$sql="select * from users where username='".$_POST['username']."' and id!='".$_POST['uid']."'";
+			$isUser=$this->db->query($sql)->result();
+			if(empty($isUser))
+			{				
+				$_POST['username_clean']=cleanUsername($_POST['username']);
+				$isUserUpdate = $this->user_model->addverified($_POST);
+				if($isUserUpdate)
+				{																																	
+					$tempData['email']=$_POST['email'];
+					$tempData['password']=$_POST['password'];
+					$currentuser = $this->auth->login($tempData);
+					//////////////////////////////////////
+					if(!$currentuser)
+					{						
+						redirect('/logout/');
+					}
+					else
+					{
+						if (!$this->auth->isSetup())
+						{							
+							redirect('access/signup_step2/'.$_POST['uid']);					
+						}
+						else
+						{										
+							$isupdate=$this->user_model->setLastLogin($user);
+							redirect('users/eating_journal/'.$_POST['username_clean']);
+						}
+					}
+					/////////////////////////////////////////
+				}					
+			}
+			else
+			{				
+				$this->viewVars['error']="User already exists with this username.";
+			}					
+		}
+		else
+		{
+			
+		}
+		///////////////////////////////////////////////////
+		if(empty($this->viewVars['user']))		
+		redirect('/access/signup/');
+		else if(!empty($this->viewVars['user'])&&$this->viewVars['user'][0]->active==0)
+		{			
+			$this->session->set_userdata('error', 'Please confirm your email first');
+			redirect('/access/signup/');			
+		}		
+		else			
+		return $this->load->view('users/signup/step2', $this->viewVars);
+					
+	}	
+}
+
+?>

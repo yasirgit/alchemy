@@ -1,0 +1,1 @@
+<div class="atchemy-banner"><img src="htdocs/images/my-account-banner.jpg" alt="Alchemy banner 607 x 84" /></div>

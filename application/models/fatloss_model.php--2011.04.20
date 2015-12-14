@@ -1,0 +1,300 @@
+<?php
+class fatloss_model extends Model
+{
+	private $CI;
+	
+	function __construct()
+	{
+		parent::Model();
+		$this->CI =& get_instance();		
+		////////////////////////////////////////////						
+		if(strlen($this->session->userdata('timezone'))>0)
+		date_default_timezone_set($this->session->userdata('timezone'));		   				   	
+		/////////////////////////////////////////////		   						
+		
+	}	
+	function meal_criteria($allvalue)
+	{
+		$fatburning=0;
+		$return=array();
+		$message=array();
+		$mIndex=0;
+			
+		if($allvalue['sex']=="Male")
+		{
+		///////////////////
+			if($allvalue['total_calories']>=350&&$allvalue['total_calories']<=450)//If Total Calories too small
+			{
+			 $fatburning+=-1;
+			 $message[$mIndex++]="Your Breakfast was a little small. Improve results and keep hunger and cravings in check by enjoying full portions.";
+			}
+			else if($allvalue['total_calories']<350)//If Meal WAY too Small
+			{
+			 $fatburning+=-2;
+			 $message[$mIndex++]="Your not eating enough! Improve results and keep hunger and cravings in check by enjoying full portions.";
+			}
+			else if($allvalue['total_calories']>=600&&$allvalue['total_calories']<=800)//If Meal too Large
+			{
+			 $fatburning+=2;
+			 $message[$mIndex++]="That meal was a bit big.";
+			}
+			else if($allvalue['total_calories']>800)//If Meal WAY too Large
+			{
+			 $fatburning+=4;
+			 $message[$mIndex++]="Uh Oh!  Really big meal.  Check your portion sizes and added fat to avoid slowing fat loss.";
+			}
+					
+			//////////////////////carb
+			if($allvalue['total_carb']>150)//If too Much Fast Carb
+			{
+			 $fatburning+=2;	 
+			}
+			else if($allvalue['total_carb']>300)//If WAY too Much Fast Carb
+			$fatburning+=3;	
+			
+			/*due thing//If mostly Fast Carb// If Fat Loss Plate Version C (no Slow Carb)*/
+			////////////fat/////////////		
+			if($allvalue['total_fat']>100)//If too Much Fat
+			$fatburning+=0;				
+		////////////////////
+		}
+		else if($allvalue['sex']=="Female")	
+		{
+		//////////////////////
+		///////////////////
+			if($allvalue['total_calories']>=250&&$allvalue['total_calories']<=350)//If Total Calories too small
+			{
+			 $fatburning+=-1;
+			 $message[$mIndex++]="Your Breakfast was a little small. Improve results and keep hunger and cravings in check by enjoying full portions.";
+			}
+			else if($allvalue['total_calories']<250)//If Meal WAY too Small
+			{
+			 $fatburning+=-2;
+			 $message[$mIndex++]="Your not eating enough! Improve results and keep hunger and cravings in check by enjoying full portions.";
+			}
+			else if($allvalue['total_calories']>=500&&$allvalue['total_calories']<=700)//If Meal too Large
+			{
+			 $fatburning+=2;
+			 $message[$mIndex++]="That meal was a bit big.";
+			}
+			else if($allvalue['total_calories']>700)//If Meal WAY too Large
+			{
+			 $fatburning+=4;
+			 $message[$mIndex++]="Uh Oh!  Really big meal.  Check your portion sizes and added fat to avoid slowing fat loss.";
+			}
+					
+			//////////////////////carb
+			if($allvalue['total_carb']>125)//If too Much Fast Carb
+			{
+			 $fatburning+=2;	 
+			}
+			else if($allvalue['total_carb']>250)//If WAY too Much Fast Carb
+			$fatburning+=3;	
+			
+			/*due thing//If mostly Fast Carb// If Fat Loss Plate Version C (no Slow Carb)*/
+			////////////fat/////////////		
+			if($allvalue['total_fat']>75)//If too Much Fat
+			$fatburning+=0;				
+		////////////////////		
+		///////////////////
+		}	
+		//if($allvalue['total_calories'])	
+		$return['fatburning']=$fatburning;
+		$return['message']=$message;
+		
+	return $return;	
+	}
+	function getSomethingOrLot($allvalue)
+	{
+		$selot=0;
+		$selotm=array();	
+		$tIndex=0;
+		if($allvalue['sex']=="Male")
+		{
+		///////////////////
+			if($allvalue['total_calories']>=100&&$allvalue['total_calories']<=300)
+			{
+				$selot=2;
+				$selotm[$tIndex++]="Try to hold out or If you are hungry between meals";
+			}
+			else if($allvalue['total_calories']>300)
+			{
+				$selot=3;
+				$selotm[$tIndex++]="";
+			}		
+		////////////////////
+		}
+		else if($allvalue['sex']=="Female")
+		{
+		///////////////////
+			if($allvalue['total_calories']>=50&&$allvalue['total_calories']<=150)
+			{
+				$selot=2;
+				$selotm[$tIndex++]="Try to hold out or If you are hungry between meals";
+			}
+			else if($allvalue['total_calories']>150)
+			{
+				$selot=3;
+				$selotm[$tIndex++]="";
+			}
+		////////////////////	
+		}
+		 $return=array();
+		 $return['value']=$selot;
+		 $return['message']=$selotm;	
+		 return $return;
+	}
+	function snack_criteria($allvalue)
+	{//////
+		$fatburning=0;
+		$return=array();
+		$message=array();
+		$mIndex=0;
+		
+		if($allvalue['sex']=="Male")
+		{
+		///////////////////
+			if($allvalue['total_calories']>400)//If way too big…
+			{
+			 $fatburning+=3;
+			 $message[$mIndex++]="";
+			}
+			else if($allvalue['total_calories']>200)//If Meal WAY too Small
+			{
+			 $fatburning+=2;
+			 $message[$mIndex++]="";
+			}
+			else if($allvalue['total_calories']<100)//If too small…
+			{
+			 $fatburning+=-2;
+			 $message[$mIndex++]="";
+			}			
+		////////////////////
+		}
+		else if($allvalue['sex']=="Female")	
+		{
+		//////////////////////			
+			if($allvalue['total_calories']>300)//If way too big…
+			{
+			 $fatburning+=3;
+			 $message[$mIndex++]="";
+			}
+			else if($allvalue['total_calories']>150)//If Meal WAY too Small
+			{
+			 $fatburning+=2;
+			 $message[$mIndex++]="";
+			}
+			else if($allvalue['total_calories']<75)//If too small…
+			{
+			 $fatburning+=-2;
+			 $message[$mIndex++]="";
+			}				
+		///////////////////
+		}	
+		//if($allvalue['total_calories'])	
+		$return['fatburning']=$fatburning;
+		$return['message']=$message;
+		
+	return $return;
+	}///////
+	function getHourDiff($firstHour,$secondHour)
+	{
+			$dtime=substr($firstHour,0,5);
+			$atime=substr($secondHour,0,5);		
+			
+			$nextDay=$dtime>$atime?1:0;
+			$dep=EXPLODE(':',$dtime);
+			$arr=EXPLODE(':',$atime);
+			$diff=ABS(MKTIME($dep[0],$dep[1],0,DATE('n'),DATE('j'),DATE('y'))-MKTIME($arr[0],$arr[1],0,DATE('n'),DATE('j')+$nextDay,DATE('y')));
+			$hours=FLOOR($diff/(60*60));
+			$mins=FLOOR(($diff-($hours*60*60))/(60));
+			$secs=FLOOR(($diff-(($hours*60*60)+($mins*60))));
+			IF(STRLEN($hours)<2){$hours="0".$hours;}
+			IF(STRLEN($mins)<2){$mins="0".$mins;}
+			IF(STRLEN($secs)<2){$secs="0".$secs;}
+			
+			$temp=floatval($mins/60);
+			$temp+=$hours;			
+			return $temp;	
+	}
+	function getSleepInfo($total_sleep)
+	{
+		if($total_sleep<5)
+		{
+			$return['message']="You need to get more sleep!  Studies show that people who only got 5 hours of sleep where 50% more likely to be obese than those who got 7-8.";
+			$return['pvalue']=3;
+		}
+		else if($total_sleep<6)
+		{
+			$return['message']="You need to get more sleep!  Studies show that people who only got 6 hours of sleep where 23% more likely to be obese than those who got 7-8.";
+			$return['pvalue']=2;
+		}
+		else if($total_sleep<7||$total_sleep>9)
+		{
+			$return['message']='Sleep - Try to get a full 7-8 hours of sleep tonight.  It will help speed weight loss and minimize cravings during the day.';
+			$return['pvalue']=1;
+		}
+		else 
+		{
+			$return['message']='';
+			$return['pvalue']=0;
+		}
+		return $return;
+	}
+	///////////////////////////
+	function isfatlossplate($data)
+	{		
+		$iscalorieOk=0;
+		$isproteingOk=0;
+		$iscarbsOk=0;
+		$isfatOK=0;
+			///////////////////////
+		if(isset($data['sex']))	
+		{
+			if($data['sex']=="Male")
+			{			
+					if($data['type']=="Snack"&&$data['total_calories']>=100&&$data['total_calories']<=200)
+					$iscalorieOk=1;
+					else if($data['total_calories']>=300&&$data['total_calories']<=550&&$data['type']!="Snack")
+					$iscalorieOk=1;
+
+					if($data['total_fat']>=0&&$data['total_fat']<=21.4)
+					$isfatOK=1;
+
+					if($data['total_carb']>=0&&$data['total_carb']<=50)
+					$iscarbsOk=1;
+
+					if($data['total_protein']>=15)
+					$isproteingOk=1;						
+			}
+			else if($data['sex']=="Female")
+			{
+					if($data['type']=="Snack"&&$data['total_calories']>=75&&$data['total_calories']<=150)
+					$iscalorieOk=1;
+					else if($data['total_calories']>=250&&$data['total_calories']<=450&&$data['type']!="Snack")
+					$iscalorieOk=1;
+
+					if($data['total_fat']>=0&&$data['total_fat']<=17.4)
+					$isfatOK=1;
+
+					if($data['total_carb']>=0&&$data['total_carb']<=45)
+					$iscarbsOk=1;
+
+					if($data['total_protein']>=12)
+					$isproteingOk=1;						
+			}
+		}	
+				
+			$isfatlosplate=0;	
+			if($iscalorieOk==1&&$isfatOK==1&&$iscarbsOk==1&&$isproteingOk==1&&$data['type']!="Snack")
+			$isfatlosplate=1;
+			else if($iscalorieOk==1&&$data['type']=="Snack")
+			$isfatlosplate=1;
+			else
+			$isfatlosplate=0;
+				
+			return $isfatlosplate;
+		///////////////////////////////	
+	}
+}
+?>

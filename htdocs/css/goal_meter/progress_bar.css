@@ -1,0 +1,76 @@
+/*
+ * jQuery UI Progressbar 1.8.9
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Progressbar#theming
+ */
+.ui-progressbar { height:2em; text-align: left; }
+.ui-progressbar .ui-progressbar-value {
+margin: -1px; 
+height:100%;
+background:#94BE52;
+ }
+
+
+.ppbar_set #progressbar{
+margin:auto;
+width:200px;
+height:23px;
+background:#D7EBF3;
+}
+/*-----------------------------8 week --------------------------------*/
+.ui-eightweekGoal { height:2em; text-align: left; }
+.ui-eightweekGoal .ui-eightweekGoal-value {
+margin: -1px; 
+height:100%;
+background:#94BE52;
+ }
+
+.ppbar_set #eightweekGoal{
+margin:auto;
+width:200px;
+height:23px;
+background:#D7EBF3;
+}
+
+/*---------------------------bonus goal--------------------------------*/
+
+.ui-bonusGoalppbar { height:2em; text-align: left; }
+.ui-bonusGoalppbar .ui-bonusGoalppbar-value {
+margin: -1px; 
+height:100%;
+background:#94BE52;
+ }
+
+.lose-graph #bonusGoalppbar{
+  height: 26px;
+    margin: auto;
+    padding-left: 2px;
+    padding-top: 1px;
+    width: 310px;
+background:#D7EBF3;
+}
+
+#bonusGoalppbar .ui-progressbar .ui-progressbar-value{
+background:#816CA7;
+}
+/*---------------------------bonus goal- edit-------------------------------*/
+.ui-popupBgoalbar { height:2em; text-align: left; }
+.ui-popupBgoalbar .ui-popupBgoalbar-value {
+margin: -1px; 
+height:100%;
+background:#94BE52;
+ }
+
+.bonus-goal-graph #popupBgoalbar{
+    background: #D7EBF3;
+    height: 25px;
+    left: 13px;
+    margin: auto;
+    position: relative;
+    top: 15px;
+    width: 356px;
+}

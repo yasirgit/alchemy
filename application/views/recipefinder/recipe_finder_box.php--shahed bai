@@ -1,0 +1,13 @@
+<script type="text/javascript">
+function submitform()
+{
+  document.recipe_finder.submit();
+}
+</script>
+<form action="recipefinder/search" class="signup" name="recipe_finder" method="post">
+		<fieldset>
+				<span class="text"><span><input type="text" name="search" value="<? if(!empty($search_box)) echo $search_box;?>"/></span></span>
+				<a href="javascript: submitform()" class="sexybutton sexyorange sexybtn"><span><span>Go</span></span></a>
+		</fieldset>
+									
+</form>

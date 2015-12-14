@@ -1,0 +1,20 @@
+<?php
+$data=array();
+$data['sleeptime']=$sleeptime;
+$data['jornel_type']="sleep";
+?>
+
+<div class="schedule-box">
+	<div class="edit-box"><?=$this->load->view('users/eating_journal/journal_meal',$data);?></div>
+	<div class="holder">
+		<div class="hours-box"><span><?php
+			echo date("h:i A",strtotime($sleeptime->from_time))." <br />to<br /> ".date("h:i A",strtotime($sleeptime->to_time));		
+		?></span></div>
+		<div class="image-box" style="vertical-align:middle;">
+			<img src="htdocs/images/img5.gif" width="33" height="32" alt="" />
+		</div>
+		<div class="info-box sub4">
+			<strong>Sleep</strong>
+		</div>
+	</div>
+</div>

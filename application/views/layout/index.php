@@ -1,0 +1,5 @@
+<?=$__header;?>
+<?=$__top;?>
+<?=@$__sidebar?>
+<?=$__twocolumns?>
+<?=$__footer;?>

@@ -1,0 +1,18 @@
+.block-in-content
+{
+	position:absolute;
+	top:0;
+	width:100%;
+	height:auto;
+}
+.sliderItemolder {
+	position:relative;	
+	overflow:hidden;
+	width:387px;
+	height:236px;
+	
+}
+.section-box .block-in-text
+{
+	padding:0 5px 15px;
+}

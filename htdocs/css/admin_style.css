@@ -1,0 +1,736 @@
+body { 
+	margin: 0; 
+	padding: 0; 
+	font-family: Arial, Lucida Grande, Verdana, Geneva, Sans-serif; 
+	font-size: 12px; 
+	color: #333; 
+	background-color: #fff; 
+}
+#content { 
+	left: 0px; 
+	right: 10px; 
+	margin: 0 15px 30px 15px; 
+	padding: 14px 13px 0 13px; 
+	width: auto; 
+	background-color: transparent; 
+}
+* html #content { 
+	width: 100%; 
+	w\idth: auto; 
+}
+#contentNB { 
+	left: 0px; 
+	right: 10px; 
+	width: 917px; 
+	margin: 0 auto 0 auto;	
+	padding: 0 18px 20px 13px; 
+	min-height:450px;	
+	background-color: #fff; 
+}
+
+* html #contentNB { 
+	width: 100%; 
+	w\idth: auto; 
+}
+
+.copyright { 
+	clear: both; 
+    border-top: 1px solid #CCCCCC;
+	vertical-align: bottom; 
+	text-align: center; 
+	font-size: 11px; 
+	color: #999; 
+	line-height: 15px; 
+	margin: 20px 0 1px 0; 
+	padding: 14px 0 14px 0; 
+}
+
+#topBar { 
+}
+#header { 
+	background-color: #27343C; 
+	height: 10px; 
+}
+
+
+#breadcrumbNoLine { 
+	margin: 0px 19px 0 19px; 
+	padding: 10px 13px 0 13px; 
+	line-height: 18px; 
+	background-color: #fff; 
+	width: auto;
+
+}
+* html #breadcrumbNoLine { 
+	width: 100%; 
+	w\idth: auto; 
+}
+
+.crumbPad { 
+	padding: 0px 0 10px 0; 
+	margin: 0; 
+	font-size: 11px; 
+	color: #666; 
+	background-color: #fff; 
+}
+
+#simpleHeader { 
+	background-color: #27343c; 
+	height: 14px; 
+	border-bottom: #2E345D 1px solid; 
+	margin: 0; 
+	padding: 0; 
+}
+.navCell { 
+	background-color: #27343C; 
+	padding: 0; 
+	margin: 0; 
+	cursor: pointer; 
+}
+.navCell a:hover { 
+	color: #787FA4; 
+	text-decoration: none; 
+}
+.cpNavOff, .cpNavLocked { 
+	background: #142129 url(http://localhost/reyengglive/themes/cp_themes/default/images/tab_inactive.gif) repeat-x left bottom; 
+	font-size: 12px; 
+	color: #ADC0CB ; 
+	text-align: center; 
+	padding: 6px 4px 5px 4px; 
+	margin: 0; 
+	border-left: #27343C 1px solid; 
+	border-right: #27343C 2px solid; 
+
+	white-space: nowrap; 
+}
+.cpNavHover { 
+	font-size: 12px; 
+	color: #fff; 
+	background: #101B22 url(http://localhost/reyengglive/themes/cp_themes/default/images/tab_inactive.gif) repeat-x left bottom;	text-align: center; 
+	padding: 6px 4px 5px 4px; 
+	margin: 0; 
+	border-left: #27343C 1px solid; 
+	border-right: #27343C 2px solid; 
+
+	white-space: nowrap; 
+}
+.cpNavOn { 
+	font-size: 12px; 
+	color: #666; 
+	background: #fff url(http://localhost/reyengglive/themes/cp_themes/default/images/tab_selected.gif) repeat-x right top; ; 
+	padding: 8px 4px 3px 4px; 
+	margin: 0; 
+	text-align: center; 
+	font-weight: bold; 
+	border-left: #fff 1px solid; 
+	border-right: #27343C 2px solid; 
+}
+.cpNavOn a:hover { 
+	color: #000; 
+	background: transparent; 
+	text-decoration: none; 
+}
+.cpNavOff a:link, .cpNavOff a:visited { 
+	color: #ADC0CB; 
+	background: transparent; 
+	text-decoration: none; 
+}
+.cpNavHover a:link, c.NavHover a:visited, .cpNavOff a:hover { 
+	color: #E6E8F9; 
+	background: transparent; 
+	text-decoration: none; 
+}
+
+.helpLinksLeft { 
+	text-align: left; 
+	padding-left: 25px; 
+color:#fff;
+}
+.helpLinksLeft a:link { 
+        color:#fff;
+}
+
+a { 
+	color: #1D7FC6; 
+	background-color: transparent; 
+	text-decoration: none; 
+}
+a:visited { 
+	color: #1D7FC6; 
+	background-color: transparent; 
+	text-decoration: none; 
+}
+a:hover { 
+	color: #1D7FC6; 
+	text-decoration: none; 
+	background-color: transparent; 
+}
+.smallLinks { 
+	font-size: 10px; 
+	color: #38394B; 
+	background-color: transparent; 
+	white-space: nowrap; 
+}
+.smallLinks a:link { 
+	color: #333399; 
+	background: transparent; 
+	text-decoration: none; 
+}
+.smallLinks a:visited { 
+	color: #333399; 
+	background: transparent; 
+	text-decoration: none; 
+}
+.smallLinks a:hover { 
+	color: #A0A4C1; 
+	background: transparent; 
+	text-decoration: underline; 
+}
+.lightLinks { 
+	font-size: 10px; 
+	color: #888; 
+	background-color: transparent; 
+	white-space: nowrap; 
+	cursor: pointer; 
+}
+.lightLinks a:link { 
+	color: #353962; 
+	background: transparent; 
+	text-decoration: none; 
+}
+.lightLinks a:visited { 
+	color: #353962; 
+	background: transparent; 
+	text-decoration: none; 
+}
+.lightLinks a:hover { 
+	color: #A0A4C1; 
+	background: transparent; 
+	text-decoration: underline; 
+}
+.helpLinks { 
+	color: #3D525F; 
+	background: #27343C url(http://localhost/reyengglive/themes/cp_themes/default/images/bg_top.gif) repeat-x left top;
+	text-align: right; 
+	font-size: 10px; 
+	padding: 25px 30px 10px 0px; 
+}
+.helpLinks a:link { 
+	color: #45A7DC; 
+	background: transparent; 
+	text-decoration: none; 
+}
+.helpLinks a:visited { 
+	color: #45A7DC;; 
+	background: transparent; 
+	text-decoration: none; 
+}
+.helpLinks a:hover { 
+	color: #B9BDD4; 
+	background: transparent; 
+	text-decoration: none; 
+}
+
+.altLink { 
+	font-size: 11px; 
+	font-weight: normal; 
+	color: #fff; 
+}
+.altLink a:link { 
+	color: #fff; 
+	text-decoration: none; 
+	white-space: nowrap; 
+}
+.altLink  a:visited { 
+	text-decoration: none; 
+	color: #fff; 
+}
+.altLink a:hover { 
+	text-decoration: underline; 
+	color: #D6D8E4; 
+}
+.default, .defaultPad, .defaultRight, .defaultPadBold, .defaultBold, .defaultSmall, .defaultCenter, .defaultLight { 
+	font-size: 11px; 
+	color: #666; 
+	padding: 1px 0 1px 0; 
+	margin: 0; 
+	background-color: transparent; 
+}
+
+.smallNoWrap { 
+	color: #333; 
+	font-size: 11px; 
+	white-space: nowrap; 
+}
+blockquote { 
+	background: #EFEFF4; 
+	border-left: 4px solid #6363A0; 
+	border-top: 1px solid #B2B3CE; 
+	border-bottom: 1px solid #B2B3CE; 
+	border-right: 1px solid #B2B3CE; 
+	font-size: 11px; 
+	color: #38394B; 
+	margin: 8px 2px 10px 6px; 
+	padding: 10px 10px 10px 6px; 
+}
+h1 { 
+	font-size: 14px; 
+	font-weight: bold; 
+	color: #fff;
+	background: transparent; 
+	margin: 0 0 5px 0; 
+	padding: 0; 
+}
+h2 { 
+	font-size: 13px; 
+	font-weight: bold; 
+	color: #424354; 
+	background: transparent; 
+}
+h3 { 
+	font-size: 16px; 
+	font-weight: bold; 
+	color: #999; 
+	background: transparent; 
+	margin: 5px 8px 7px 0; 
+}
+h5 { 
+	font-size: 12px; 
+	font-weight: bold; 
+	color: #333; 
+	background: transparent; 
+	margin: 0 0 3px 0; 
+}
+pre { 
+	font-size: 11px; 
+	color: #009933; 
+	background: transparent; 
+	margin: 6px 0 6px 19px; 
+}
+p, strong { 
+	font-size: 11px; 
+	color: #333; 
+	background: transparent; 
+	margin: 4px 0 4px 0; 
+}
+strong { 
+	font-weight: bold; 
+}
+
+
+#breadcrumb { 
+	margin: 8px 30px 0 28px; 
+	padding: 4px 0 0 3px; 
+	line-height: 18px; 
+	border-bottom: #ccc 1px solid; 
+	width: auto; 
+}
+* html #breadcrumb { 
+	width: 100%; 
+	w\idth: auto; 
+}
+
+html>body .navCell:hover
+#publishdropmenu { display:block; visibility: visible;
+}
+html>body .navCell:hover
+#publishdropmenu ul { display:none;
+}
+html>body #publishdropmenu { display:none; position:absolute; }
+html>body #publishdropmenu,
+html>body #publishdropmenu * { list-style:none; width:200px; }
+html>body #publishdropmenu,
+html>body #publishdropmenu * { margin:0; padding:0; }
+html>body #publishdropmenu li { position: relative; }
+html>body #publishdropmenu ul { display:none; position:absolute; top:5px; left:190px; border-top:1px solid #B2B3CE; }
+html>body .navCell #publishdropmenu li:hover { background-color: #C2DBEB; }
+html>body .navCell:hover
+#sitesdropmenu { display:block; visibility: visible;
+}
+html>body .navCell:hover
+#sitesdropmenu ul { display:none;
+}
+html>body #sitesdropmenu { display:none; position:absolute; }
+html>body #sitesdropmenu,
+html>body #sitesdropmenu * { list-style:none; width:200px; }
+html>body #sitesdropmenu,
+html>body #sitesdropmenu * { margin:0; padding:0; }
+html>body #sitesdropmenu li { position: relative; }
+html>body #sitesdropmenu ul { display:none; position:absolute; top:5px; left:190px; border-top:1px solid #B2B3CE; }
+html>body .navCell #sitesdropmenu li:hover { background-color: #C2DBEB; }
+html>body .navCell:hover #boardsdropmenu { display:block; visibility: visible; }
+html>body .navCell:hover #boardsdropmenu ul { display:none; }
+html>body #boardsdropmenu { display:none; position:absolute; }
+html>body #boardsdropmenu,
+html>body #boardsdropmenu * { list-style:none; width: 275px;}
+html>body #boardsdropmenu,
+html>body #boardsdropmenu * { margin:0; padding:0; }
+html>body #boardsdropmenu li { position: relative; }
+html>body #boardsdropmenu ul { display:none; position:absolute; top:5px; left:190px; border-top:1px solid #B2B3CE; }
+html>body .navCell #boardsdropmenu li:hover { background-color: #C2DBEB; }
+
+.tableBorderSides { 
+	border-right: 1px solid #B1B6D2; 
+	border-left: 1px solid #B1B6D2; 
+}
+.tableHeading { 
+	font-size: 11px; 
+	font-weight: bold; 
+	color: #fff; 
+	padding: 7px 6px 7px 6px; 
+	background: #768E9D url(http://localhost/reyengglive/themes/cp_themes/default/images/bg_table_heading.gif) repeat-x left bottom;
+}
+.tableHeadingAlt { 
+	font-size: 11px; 
+	font-weight: bold; 
+	white-space: nowrap; 
+	color: #0C1216; 
+	padding: 5px 6px 5px 6px; 
+	background: #B8C6CE url(http://localhost/reyengglive/themes/cp_themes/default/images/bg_table_heading_alt.gif) repeat-x left bottom;
+}
+.default .tableHeadingAlt { 
+	font-size: 11px; 
+	font-weight: bold; 
+	white-space: nowrap; 
+	color: #0C1216; 
+	padding: 5px 6px 5px 6px; 
+	background-color: #B8C6CE;
+	background-image:none;
+}
+.tableHeadingAlt a:link { 
+	color: #424665; 
+	text-decoration: none; 
+}
+.tableHeadingAlt a:visited { 
+	color: #424665; 
+	text-decoration: none; 
+}
+.tableHeadingAlt a:hover { 
+	color: #787FA4; 
+	text-decoration: none; 
+}
+.tableHeadingAltHover { 
+	font-size: 11px; 
+	font-weight: bold; 
+	color: #000; 
+	padding: 5px 6px 5px 6px; 
+	background-color: #A1B1BB;
+
+	cursor: pointer; 
+}
+.tableHeadingAltHover a { 
+	color: #696F92; 
+	text-decoration: none; 
+}
+.tableHeadingSmall { 
+	font-size: 11px; 
+	font-weight: bold; 
+	white-space: nowrap; 
+	color: #0C1216; 
+	padding: 5px 6px 5px 6px; 
+	background: #B8C6CE url(http://localhost/reyengglive/themes/cp_themes/default/images/bg_table_heading_alt.gif) repeat-x left bottom;
+}
+.tableCellOne, .tableCellOneBold { 
+	color: #333; 
+	padding: 6px 10px 6px 6px; 
+	border-bottom: 1px solid #CAD0D5; 
+	background-color: #EEF4F9; 
+}
+.tableCellOne a:link, .tableCellOne a:visited, .tableCellTwo a:link ,.tableCellTwo a:visited{
+font-size:11px;
+color: #1D7FC6; 
+}
+.tableCellOne div, .tableCellTwo div {
+font-size:11px;
+
+}
+.tableCellTwo, .tableCellTwoBold { 
+	color: #333; 
+	padding: 6px 10px 6px 6px; 
+	border-bottom: 1px solid #CAD0D5; 
+	background: #fff; 
+}
+.tableCellPlain { 
+	color: #333; 
+	padding: 5px 10px 8px 7px; 
+	border-bottom: 1px solid #B1B6D2; 
+	background: #fff; 
+}
+.tableCellOneBold { 
+	font-weight: bold; 
+}
+.tableCellTwoBold { 
+	font-weight: bold; 
+}
+.tableCellOneHover, .tableCellTwoHover { 
+	background-color: #E1FAD8; 
+	font-size: 11px; 
+	color: #333; 
+	padding: 6px 10px 6px 6px; 
+	border-bottom: 1px solid #fff; 
+}
+.thumb { 
+	font-size: 11px; 
+	color: #000; 
+	width: 240px; 
+	border: 1px solid #990000; 
+}
+.thumbPad { 
+	padding: 8px; 
+}
+form { 
+	margin: 0; 
+	padding: 0; 
+	border: 0; 
+}
+.hidden { 
+	margin: 0; 
+	padding: 0; 
+	border: 0; 
+}
+.input { 
+	font-family: arial;
+	width:150px;
+	color: #333; 
+	font-size: 12px; 
+	padding: 0; 
+	margin: 0; 
+}
+
+.inputSmall { 
+	font-family: arial; 
+	color: #333; 
+	width:80px;
+	font-size: 12px; 
+	padding: 0; 
+	margin: 0; 
+}
+.multiselect { 
+	color: #333; 
+	margin: 7px 0; 
+border:1px solid #ccc;
+}
+.radio { 
+	background-color: transparent; 
+	margin-top: 4px; 
+	margin-bottom: 4px; 
+	padding: 0; 
+	border: 0; 
+}
+.checkbox { 
+	background-color: transparent; 
+	padding: 0; 
+	border: 0; 
+}
+.buttons { 
+	font-size: 11px; 
+	font-weight: bold; 
+	border-top: 1px solid #9EA3D5; 
+	border-left: 1px solid #9EA3D5; 
+	border-right: 1px solid #000; 
+	border-bottom: 1px solid #000; 
+	letter-spacing: .1em; 
+	margin: 0; 
+	padding: 1px 6px 3px 6px; 
+	background-color: #3F4471; 
+	color: #fff; 
+	cursor: pointer; 
+}
+.submit {  
+}
+#error { 
+	margin-top: 15px; 
+	padding: 1px; 
+	border: #7B81A9 1px solid; 
+}
+.errorheading { 
+	color: #fff; 
+	background: #990000; 
+	text-align: center; 
+	font-size: 12px; 
+	font-weight: bold; 
+	letter-spacing: 1px; 
+	text-transform: uppercase; 
+	padding: 4px; 
+	margin-bottom: 1px; 
+}
+
+/******** Start Login Page ***************/
+.top{
+  width:100%;
+  height: 20px;
+}
+.login {	
+	width:300px;
+	float: left;
+	border: #000000 1px solid; 	
+	height: 180px;
+    margin:0 0 0 400px;
+	
+}
+.loginArea {
+  width:290px;
+  font-weight: bold; 
+  color: #000; 
+  padding: 10px 5px 5px 5px; 
+}
+.clear{ clear:both;}
+.page_head {
+	height: 20px;
+	background-color: #000000; 
+	padding: 4px 5px 5px 5px; 
+	color: #fff;
+	font-weight: bold; 
+	
+}
+
+.page_head_left {
+	float: left;
+
+}
+.page_head_right {
+	float: right;
+
+}
+
+.buttonDiv {
+	height: 20px;	
+	padding: 4px 5px 5px 5px;
+	text-aling: right;
+	
+}
+
+/******** End Login Page ***************/
+
+/******** Start Register Page ***************/
+.register {	
+	width:500px;
+	float: left;
+	border: #000000 1px solid; 	
+	height:auto;
+    margin:0 0 0 200px;
+	
+}
+.registerBox {
+  width:490px;
+  font-weight: bold; 
+  color: #000; 
+  padding: 10px 5px 5px 5px; 
+}
+
+.details {
+	width:900px;
+	float: left;
+	border: #000000 1px solid;
+	height:auto;
+        margin:0 0 0 50px;
+
+}
+.detailsBox {
+  width:890px;
+  font-weight: bold;
+  color: #000;
+  padding: 10px 5px 5px 5px;
+}
+
+.innerBox {
+  width:880px;
+  font-weight: bold;
+  border: #000000 1px solid;
+  color: #000;
+  padding: 10px 5px 5px 5px;
+  margin: 10px 0 0 0;
+}
+
+.innerBox .recipebox {
+    text-align: left;
+}
+
+.error{
+    color: #CC0000;
+    padding: 5px 0 0 10px;    
+}
+
+
+.required {
+    color: #CC0000;
+    font-weight: bold;
+}
+
+
+.error p {
+    color: #CC0000;
+    padding: 5px 0 0 0px;
+}
+.pagenav {
+    height: 25px;
+    background-color: #cccccc;
+}
+
+.frmLebel { 
+    float: left;
+    width:140px;
+    padding: 10px 5px 5px 5px;
+	
+}
+.frmFiled  { 
+    float: left;
+    width:330px;
+    padding: 10px 5px 5px 5px;
+	
+}
+.recipe {
+
+}
+
+.recipe th{
+    text-align: left;
+
+}
+
+.recipe td{
+    text-align: left;
+    font-weight:normal;
+
+}
+/******** End Register Page ***************/
+.viewpage {
+    width:960px;
+    float: left;
+    border: #000000 1px solid;
+    height:auto;
+    margin:0 0 0 0px;
+}
+.viewpageBox {
+  width:960px;
+  font-weight: bold;
+  color: #000;
+  padding: 0;
+}
+.viewpage th{
+    background-color: #CCCCCC;
+    font-size: 12px;
+    font-weight: bold;
+    height: 24px;
+}
+.viewpageBox td.odd  {
+    background-color:#EFEFF4;
+    font-size: 12px;
+    padding: 0 0 0 5px;
+    font-weight:normal;
+    height: 24px;
+}
+.viewpageBox td.event   {
+    background-color: #E6E8F9;
+    font-size: 12px;
+    padding: 0 0 0 5px;
+    font-weight: normal;
+    height: 24px;
+}
+.addlink {
+    width:100%;
+    padding: 0 0 10px 0;
+}
+/**********Start View Page ****************/
+
+/**********End View Page ****************/

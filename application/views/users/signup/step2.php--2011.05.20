@@ -1,0 +1,260 @@
+<style type="text/css">
+	.error p{color:red;font-weight:bold;font-size:10px;}
+</style>
+<?php
+$bInfo=array(); 
+echo $this->load->view('users/banner',$bInfo); ?>
+<div class="how-do-use" style="height:12px;"></div>
+<form action="access/signup_step2/<?php echo $user[0]->id; ?>" method="post" class="signup-form signup-form-update" id="signup_form_update">
+	<fieldset>
+        <div class="block-in-blue block-in-blue-light-green additional-reciep-box">
+			<div class="block-in-holder-blue">
+				<div class="block-in-frame-blue">
+					<div class="block-in-title-blue title-blue-wider" style="line-height:normal;">
+						<h2 style="line-height:normal;">My Account Details</h2>
+							<span style="">All fields required</span>
+					</div>
+<?php if($error) {?>
+  <span class="error"><p><?php echo $error; ?></p></span>
+<?php }?>
+					<div class="signup-type signup-type-up">
+						<div class="row">
+							<div class="insFieldset">
+                                                        <label>First Name:</label>
+                                                            <div>
+                                                            <span class="text"><input type="text" name="first_name" value="<?php echo set_value('first_name'); ?>" /></span>
+                                                            <?php if(form_error('first_name')) {?>
+                                                            <span class="error"><?php echo form_error('first_name'); ?></span>
+                                                            <?php }?>
+                                                            </div>
+                                                            <br class="clear" />
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Last Name:</label>
+                                                            <div><span class="text"><input type="text" name="last_name" value="<?php echo set_value('last_name'); ?>"  /></span>
+                                                            <?php if(form_error('last_name')) {?>
+                                                            <span class="error"><?php echo form_error('last_name'); ?></span>
+                                                            <?php }?>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Email:</label>
+                                                            <div><span class="text"><input type="text" value="<?php echo $user[0]->email; ?>" readonly="true" name="email" /></span></div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Birthdate:</label>
+                                                            <div class="define-width">
+                                                            <span class="text dd-size"><select class="" name="bmonth">
+															<?php for($i=0; $i<=11;$i++){ 
+															 $month=array(Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec);
+															?>
+															<option value="<? echo $i+1; ?>"><? echo $month[$i]; ?></option>
+															<?
+															}?>
+															</select>
+															</span>
+                                                                <span class="slash-place">/</span>
+                                                                <span class="text mm-size"><select class="" name="bday">
+															<?php for($i=1; $i<=31;$i++){ ?>
+															<option value="<? echo $i; ?>" ><? echo $i; ?></option>
+															<?
+															}?>
+															</select></span>
+                                                                <span class="slash-place">/</span>
+                                                                <span class="text yyyy-size"><select class="" name="byear">
+															<?php for($i=1960; $i<=1995;$i++){ ?>
+															<option value="<? echo $i; ?>" ><? echo $i; ?></option>
+															<?
+															}?>
+															</select></span>
+                                                                <span class="z-type" style="width:113px;">
+                                                                <strong class="sex-typr-text">Gender:</strong>
+                                                                <span class="text">
+                                                                        <select class="select-recipe define-recipe" name="sex" style="width:60px;">
+                                                                            <option selected="selected" value="Female">Female</option>
+                                                                            <option value="Male">Male</option>
+                                                                        </select>
+                                                                    </span>
+                                                                </span>
+                                                                <br class="clear" />
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Height:</label>
+                                                            <div>
+                                                            <span class="text dd-size"><input type="text" value="" name="hfeet" /></span>
+                                                                <span class="unit-length-place">ft-</span>
+                                                                <span class="text mm-size"><input type="text" value="" name="hinch" /></span>
+                                                                <span class="unit-length-place">in</span>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Current Weight:</label>
+                                                            <div>
+                                                            <span class="text lbs-size"><input type="text" value="" name="current_weight" /></span>
+                                                                <span class="unit-length-place">lbs.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goal Weight:</span>
+                                                                <span class="text lbs-size"><input type="text" value=""  name="goal_weight"/></span>
+                                                                <span class="unit-length-place">lbs.</span>
+                                                            </div>
+                                                            <br class="clear" />
+                                                        </div>
+														<div class="insFieldset">
+                                                        <label>Timezone:</label>
+                                                            <div>
+																<span class="text">
+<?php
+$timezones = DateTimeZone::listAbbreviations();
+
+$cities = array();
+foreach( $timezones as $key => $zones )
+{
+    foreach( $zones as $id => $zone )
+    {
+        /**
+         * Only get timezones explicitely not part of "Others".
+         * @see http://www.php.net/manual/en/timezones.others.php
+         */
+        if ( preg_match( '/^America\//', $zone['timezone_id'] ) )
+            $cities[$zone['timezone_id']][] = $key;
+    }
+}
+
+// For each city, have a comma separated list of all possible timezones for that city.
+foreach( $cities as $key => $value )
+    $cities[$key] = join( ', ', $value);
+
+// Only keep one city (the first and also most important) for each set of possibilities.
+$cities = array_unique( $cities );
+
+// Sort by area/city name.
+ksort( $cities );
+$timezone = $cities;
+?>
+                                                                        <select class="select-recipe define-recipe" name="timezone" style="width:150px;">
+																		<?php 
+																		foreach($timezone as $key=>$value)
+																		{
+																		?>																				
+																			<option value="<?php echo $key;?>"><?php echo $key;?></option>
+																		<?php
+																		}
+																		?>
+                                                                        </select>
+                                                                  </span>                                                                
+                                                            </div>
+                                                            <br class="clear" />
+                                                        </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+                                    <div class="block-in-blue block-in-blue-light-green additional-reciep-box">
+			<div class="block-in-holder-blue">
+				<div class="block-in-frame-blue">
+					<div class="title-null">&nbsp;</div>
+					<div class="signup-type signup-type-up">
+						<div class="row">
+							<div class="insFieldset">
+                                                        <label>Account Name:</label>
+                                                            <div>
+                                                           <!-- <input type="hidden" name="username" value="<?php echo $user[0]->email; ?>" readonly="true" />-->
+															<span class="text" style="padding:5px; border-right:1px solid #A8ACAD; width:277px;"><?php echo $user[0]->email; ?></span>
+                                                            <?php if(form_error('username')) {?>
+                                                            <span class="error"><?php echo form_error('username'); ?></span>
+                                                            <?php }?>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Password:</label>
+                                                            <div><span class="text"><input type="password" name="password" <?php echo set_value('password'); ?> /></span>
+                                                            <?php if(form_error('password')) {?>
+                                                            <span class="error"><?php echo form_error('password'); ?></span>
+                                                            <?php }?>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Verify Password:</label>
+                                                            <div><span class="text"><input type="password" name="cpassword" /></span></div>
+                                                            <div class="clear"></div>
+                                                        </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+                                    <div class="block-in-blue block-in-blue-light-green additional-reciep-box">
+			<div class="block-in-holder-blue">
+				<div class="block-in-frame-blue">
+					<div class="title-null">&nbsp;</div>
+					<div class="signup-type signup-type-up">
+						<div class="row">
+							<div class="insFieldset">
+                                                        <div class="timesheet-daily-holder">
+                                                            <span class="timesheet-text">What time do you usually <span class="wakeup">wake up</span> on the <span class="weekdays">weekdays</span>?</span>
+                                                            <span class="text">
+																	<?php
+																	$this->load->view('users/signup/time',array('title' => 'Weekdays',	'day' => 'weekdays', 'event' => 'Wakeup', 'value'=>'06:00:00',	'start' => false, 'end' => false,'class'=>'select-recipe weekend-size'));//'start' => '06:00', 'end' => '11:00'));																	
+																	?>                                                                    
+                                                                </span>
+                                                                <br class="clear" />
+                                                            </div>
+                                                            <div class="timesheet-daily-holder">
+                                                           <span class="timesheet-text">What time do you usually <span class="gotobed">go to bed</span> on the <span class="weekdays">weekdays</span>?</span>
+                                                            <span class="text">
+                                                                    <?php
+																	$this->load->view('users/signup/sleep_time',array('title' => 'Weekdays',	'day' => 'weekdays', 'event' => 'Bed','value'=>'22:00:00',	'start' => false, 'end' => false,'class'=>'select-recipe weekend-size'));//'start' => '06:00', 'end' => '11:00'));																	
+																	?>
+                                                                </span>
+                                                                <div class="clear"></div>
+                                                            </div>
+                                                            <div class="timesheet-daily-holder">
+                                                            <span class="timesheet-text">What time do you usually <span class="wakeup">wake up</span> on the <span class="weekends">weekends</span>?</span>
+                                                            <span class="text">
+                                                                    <?php
+																	$this->load->view('users/signup/time',array('title' => 'Weekends',	'day' => 'weekends', 'event' => 'Wakeup','value'=>'06:00:00',	'start' => false, 'end' => false,'class'=>'select-recipe weekend-size'));//'start' => '06:00', 'end' => '11:00'));																	
+																	?> 
+                                                                </span>
+                                                                <div class="clear"></div>
+                                                            </div>
+                                                            <div class="timesheet-daily-holder">
+                                                             <span class="timesheet-text">What time do you usually <span class="gotobed">go to bed</span> on the <span class="weekends">weekends</span>?</span>
+                                                            <span class="text">
+                                                                    <?php
+																	$this->load->view('users/signup/sleep_time',array('title' => 'Weekends',	'day' => 'weekends', 'event' => 'Bed', 'value'=>'22:00:00',	'start' => false, 'end' => false,'class'=>'select-recipe weekend-size'));//'start' => '06:00', 'end' => '11:00'));																	
+																	?> 
+                                                                </span>
+                                                                <br class="clear" />
+                                                            </div>
+                                                        </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="btn-area-form btn-area-form-right">
+			<div class="sexybutton-area">
+				<input type="hidden" name="uid" value="<?php echo $user[0]->id; ?>" >
+				<button type="submit" class="sexybutton sexysimple sexygreen btn-submit"><span class="save">Save</span></button>
+			</div>
+			<button class="sexybutton sexysimple sexygreen btn-submit" type="reset">Cancel</button>			
+		</div>
+                                    <div class="clear">&nbsp;</div>
+	</fieldset>
+</form>
+<?php /*
+<div style="font-weight:bold;color:#CC0000;">
+	<?php
+	if(!empty($error)) { echo "<br />".$error."<br />"; }
+	echo validation_errors();
+	?>
+</div>
+<?php
+*/
+?>

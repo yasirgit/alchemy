@@ -1,0 +1,158 @@
+<?
+$CI =& get_instance();
+if ($CI->auth->isLoggedIn() && $CI->auth->isSetup())
+{
+	?>
+	<div id="sidebar">
+		<div class="sidebar-box">
+			<div class="sidebar-holder">
+				<div class="sidebar-frame">
+					<div class="date">
+						<!--
+						<ul>
+							<li><a href="javascript:void(0);" class="prev">prev</a></li>
+							<li><a href="javascript:void(0);" class="next">next</a></li>
+						</ul> -->
+						<em id="sidebar_date"><?=date('l, F d',strtotime($this->session->userdata('date')))?></em>
+					</div>
+					<div class="sidebar-container">
+						<div class="holder">
+							<div class="frame">
+								<div class="optimizer-box">
+									<h2>Gyclemic Index Optimizer</h2>
+									<a href="javascript:void(0);"><img src="htdocs/images/img1.gif" alt="" width="211" height="93" /></a>
+								</div>
+								<form action="#" class="choice-form">
+									<fieldset>
+										<input type="radio" class="radio" id="real-time" name="radio1" checked="checked" />
+										<label for="real-time">Real time</label>
+										<input type="radio" class="radio" id="daily" name="radio1" />
+										<label for="daily">Daily Average</label>
+									</fieldset>
+								</form>
+								<div class="grade-box">
+									<a href="javascript:void(0);"><img src="<?=$this->config->item('base_url')?>/htdocs/images/img2.gif" alt="" width="54" height="59" /></a>
+									<p>You're on track because you're eating at the correct intervals and your plates  are smart Fat Loss plates. Suggest you try adding more proteins to your diet and increasing cardio exercise. Well done!</p>
+								</div>
+								<div class="messages-holder">
+									<div class="title">My Messages:</div>
+									<div class="scrollable">
+										<div class="messages-box">
+											<div class="image-holder">
+												<a href="javascript:void(0);"><img src="htdocs/images/img3.gif" width="47" height="47" alt="" /></a>
+												<p>1 hour ago</p>
+											</div>
+											<div class="text-box">
+												<strong>R. Ferguson</strong>
+												<strong>Dir. of Nutrition:</strong>
+												<p>You received a new badge.</p>
+												<a href="javascript:void(0);">Go to your Success Journal.</a>
+											</div>
+										</div>
+										<div class="messages-box colored">
+											<div class="image-holder">
+												<a href="javascript:void(0);"><img src="htdocs/images/img4.gif" width="38" height="31" alt="" /></a>
+											</div>
+											<div class="text-box">
+												<p>Try eating more more proteins to complete your fat loss plates.</p>
+											</div>
+										</div>
+										<div class="messages-box">
+											<div class="image-holder">
+												<a href="javascript:void(0);"><img src="htdocs/images/img3.gif" width="47" height="47" alt="" /></a>
+												<p>1 hour ago</p>
+											</div>
+											<div class="text-box">
+												<strong>R. Ferguson</strong>
+												<strong>Dir. of Nutrition:</strong>
+												<p>You received a new badge.</p>
+												<a href="javascript:void(0);">Go to your Success Journal.</a>
+											</div>
+										</div>
+										<div class="messages-box colored">
+											<div class="image-holder">
+												<a href="javascript:void(0);"><img src="htdocs/images/img4.gif" width="38" height="31" alt="" /></a>
+											</div>
+											<div class="text-box">
+												<p>Try eating more more proteins to complete your fat loss plates.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="tracker-box">
+									<div class="title">My Daily Tracker:</div>
+									<div class="water-tracker-box">
+										<strong>Water:</strong>
+										<ul class="list">
+											<li><a class="more" href="javascript:void(0);">more</a></li>
+											<li><a class="less" href="javascript:void(0);">less</a></li>
+										</ul>
+										<ul class="cups-list">
+											<?php
+											for ($x=1; $x <= _MAX_WATER_; $x++)
+											{
+												if (@$daily->cups < $x)
+												{
+													?><li><?=$x?></li><?php
+												}
+												else
+												{
+													?><li class="marked"><?=$x?></li><?php
+												}
+											}
+											?>
+										</ul>
+									</div>
+									<form class="tracker-form">
+										<fieldset>
+											<strong>Vitamins &amp; Supplements:</strong>
+											<div class="form-holder">
+												<div class="row">
+													<input class="checkbox" daily="vitamins"	autocomplete="off" type="checkbox" <?php if (@$daily->vitamins == 1)	{?>CHECKED<?php } ?> />
+													<label for="multi-vitamin">Multi-vitamin</label>
+												</div>
+												<div class="row">
+													<input class="checkbox" daily="pills"		autocomplete="off" type="checkbox" <?php if (@$daily->pills == 1)		{?>CHECKED<?php } ?> />
+													<label for="pills">Fiber Pills (2)</label>
+												</div>
+												<div class="row">
+													<input class="checkbox" daily="supplements"	autocomplete="off" type="checkbox" <?php if (@$daily->supplements == 1)	{?>CHECKED<?php } ?> />
+													<label for="supplement">Supplement</label>
+												</div>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+								<div class="list-box">									
+									<div class="title">Your To-Do List:</div>
+									<form>
+										<fieldset>
+											<div class="row" id="fatBurning"	<?=(@$daily->fatBurning == 0) ? 'style="display:block;"' : '' ;?>>
+												<input class="checkbox clear" daily="fatBurning" <?=(@$daily->fatBurning == 1) ? ' checked' : '' ;?>	type="checkbox" autocomplete="off" />
+												<label for="fatBurning">Do 36 mins of fat burning cardio</label>
+											</div>
+											<div class="row" id="nutrition"		<?=(@$daily->nutrition == 0) ? 'style="display:block;"' : '' ;?>>
+												<input class="checkbox clear" daily="nutrition"		type="checkbox" <?=(@$daily->nutrition == 1) ? ' checked' : '' ;?> autocomplete="off" />
+												<label for="supplements">Take nutritional supplements</label>
+											</div>
+											<div class="row" id="sleep"			<?=(@$daily->sleep == 0) ? 'style="display:block;"' : '' ;?>>
+												<input class="checkbox clear" daily="sleep"			type="checkbox" <?=(@$daily->sleep == 1) ? ' checked' : '' ;?> autocomplete="off" />
+												<label for="sleep">Get 7 to 8 hours sleep</label>
+											</div>
+											<div class="row" id="choose"		<?=(@$daily->choose == 0) ? 'style="display:block;"' : '' ;?>>
+												<input class="checkbox clear" daily="choose"		type="checkbox" <?=(@$daily->choose == 1) ? ' checked' : '' ;?> autocomplete="off" />
+												<label for="choose">Choose only healthy breads, sweets and fats. Cut back on sodium.</label>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php
+}
+?>

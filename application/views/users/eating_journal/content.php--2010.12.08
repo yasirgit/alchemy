@@ -1,0 +1,38 @@
+<link media="all" rel="stylesheet" href="application/views/_assets/tooltip/jquery.tooltip.css" type="text/css" />
+<script type="text/javascript" src="application/views/_assets/tooltip/jquery.tooltip.js"></script>
+<ul class="tools">
+	<!--<li><a class="save" href="javascript:void(0);">SAVE AS TEMPLATE</a></li>-->
+	<li><a class="print" href="javascript:void(0);">PRINT</a></li>
+</ul>
+<div class="links-block">
+	<a class="add" id="add_to_journal" href="javascript:void(0);">Add to Journal</a>
+	<a class="journal" href="javascript:void(0);">My Eating Journal</a>
+</div>
+<div class="schedule-block">
+	<div id="journal_content"></div>
+	<div id="add_to_journal_wrapper"></div>
+</div>
+
+<div id="addToJournalDiv"></div>
+
+<div id="saveMealDiv">
+	<div>Name: <input type="text" name="saveMealName" value="" size="20" /></div>
+	<span id="firsttime_check" style="display:none;"><?php
+	$logindate=date('Y-m-d',strtotime($user['last_login']));
+	$login_flag=$user['first_time_flag'];
+	$today=date('Y-m-d');
+	if($logindate==$today&&$login_flag==0)
+	echo "1";
+	else
+	echo "0";		
+	?></span>
+</div>
+
+<div id="shareMealDiv">
+<!--<iframe src="http://www.facebook.com/plugins/like.php?href=http://brian.ripemedia.com%2Findex.php%2Fjournal%2Fshare&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>-->
+<!--<a name="fb_share" type="icon_link" href="http://www.facebook.com/sharer.php?u=http://brian.ripemedia.com/index.php/journal/share&t=my favorite meal title">Share</a>
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>-->
+<a name="fb_share" type="icon_link" share_url="http://brian.ripemedia.com/journal/share" href="http://www.facebook.com/sharer.php">Share</a>
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+</div>
+

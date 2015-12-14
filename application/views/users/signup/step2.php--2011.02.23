@@ -1,0 +1,239 @@
+<style type="text/css">
+	.error p{color:red;font-weight:bold;font-size:10px;}
+</style>
+<?php
+$bInfo=array(); 
+echo $this->load->view('users/banner',$bInfo); ?>
+<div class="how-do-use"><a class="about-page" href="#">How do I use this page</a><a href="#" class="return-to">&lt; Return to Recipe Finder</a></div>
+<form action="access/signup_step2/<?php echo $user[0]->id; ?>" method="post" class="signup-form signup-form-update" id="signup_form_update">
+	<fieldset>
+        <div class="block-in-blue block-in-blue-light-green additional-reciep-box">
+			<div class="block-in-holder-blue">
+				<div class="block-in-frame-blue">
+					<div class="block-in-title-blue title-blue-wider">
+						<h2>My Account Details</h2>
+					</div>
+<?php if($error) {?>
+  <span class="error"><p><?php echo $error; ?></p></span>
+<?php }?>
+					<div class="signup-type signup-type-up">
+						<div class="row">
+							<div class="insFieldset">
+                                                        <label>First Name:</label>
+                                                            <div>
+                                                            <span class="text"><input type="text" name="first_name" value="<?php echo set_value('first_name'); ?>" /></span>
+                                                            <?php if(form_error('first_name')) {?>
+                                                            <span class="error"><?php echo form_error('first_name'); ?></span>
+                                                            <?php }?>
+                                                            </div>
+                                                            <br class="clear" />
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Last Name:</label>
+                                                            <div><span class="text"><input type="text" name="last_name" value="<?php echo set_value('last_name'); ?>"  /></span>
+                                                            <?php if(form_error('last_name')) {?>
+                                                            <span class="error"><?php echo form_error('last_name'); ?></span>
+                                                            <?php }?>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Email:</label>
+                                                            <div><span class="text"><input type="text" value="<?php echo $user[0]->email; ?>" readonly="true" name="email" /></span></div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Birthdate:</label>
+                                                            <div class="define-width">
+                                                            <span class="text dd-size"><input type="text" value="dd"  name="bday"/></span>
+                                                                <span class="slash-place">/</span>
+                                                                <span class="text mm-size"><input type="text" value="mm" name="bmonth" /></span>
+                                                                <span class="slash-place">/</span>
+                                                                <span class="text yyyy-size"><input type="text" value="yyyy" name="byear" /></span>
+                                                                <span class="z-type">
+                                                                <strong class="sex-typr-text">Sex:</strong>
+                                                                <span class="text">
+                                                                        <select class="select-recipe define-recipe" name="sex">
+                                                                            <option selected="selected" value="Male">Male</option>
+                                                                            <option value="Female">Female</option>
+                                                                        </select>
+                                                                    </span>
+                                                                </span>
+                                                                <br class="clear" />
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Height:</label>
+                                                            <div>
+                                                            <span class="text dd-size"><input type="text" value="" name="hfeet" /></span>
+                                                                <span class="unit-length-place">ft-</span>
+                                                                <span class="text mm-size"><input type="text" value="" name="hinch" /></span>
+                                                                <span class="unit-length-place">in</span>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Current Weight:</label>
+                                                            <div>
+                                                            <span class="text lbs-size"><input type="text" value="" name="current_weight" /></span>
+                                                                <span class="unit-length-place">lbs.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goal Weight:</span>
+                                                                <span class="text lbs-size"><input type="text" value=""  name="goal_weight"/></span>
+                                                                <span class="unit-length-place">lbs.</span>
+                                                            </div>
+                                                            <br class="clear" />
+                                                        </div>
+														<div class="insFieldset">
+                                                        <label>Timezone:</label>
+                                                            <div>
+																<span class="text"><?php
+$timezone=array(
+'Etc/GMT-12'=>"GMT+12",
+'Etc/GMT-11'=>"GMT+11",
+'Etc/GMT-10'=>"GMT+10",
+'Etc/GMT-9'=>"GMT+9",
+'Etc/GMT-8'=>"GMT+8",
+'Etc/GMT-7'=>"GMT+7",
+'Etc/GMT-6'=>"GMT+6",
+'Etc/GMT-5'=>"GMT+5",
+'Etc/GMT-2'=>"GMT+2",
+'Etc/GMT-1'=>"GMT+1",
+'GMT'=>"GMT",
+'Etc/GMT+1'=>"GMT-1",
+'Etc/GMT+2'=>"GMT-2",
+'Etc/GMT+3'=>"GMT-3",
+'Etc/GMT+4'=>"GMT-4",
+'Etc/GMT+5'=>"GMT-5",
+'Etc/GMT+6'=>"GMT-6",
+'Etc/GMT+7'=>"GMT-7",
+'Etc/GMT+8'=>"GMT-8",
+'Etc/GMT+9'=>"GMT-9",
+'Etc/GMT+10'=>"GMT-10",
+'Etc/GMT+11'=>"GMT-11",
+'Etc/GMT+12'=>"GMT-12",
+);
+?>
+                                                                        <select class="select-recipe define-recipe" name="timezone" style="width:150px;">
+																		<?php 
+																		foreach($timezone as $key=>$value)
+																		{
+																		?>																				
+																			<option value="<?php echo $key;?>"><?php echo $value;?></option>
+																		<?php
+																		}
+																		?>
+                                                                        </select>
+                                                                  </span>                                                                
+                                                            </div>
+                                                            <br class="clear" />
+                                                        </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+                                    <div class="block-in-blue block-in-blue-light-green additional-reciep-box">
+			<div class="block-in-holder-blue">
+				<div class="block-in-frame-blue">
+					<div class="title-null">&nbsp;</div>
+					<div class="signup-type signup-type-up">
+						<div class="row">
+							<div class="insFieldset">
+                                                        <label>Username:</label>
+                                                            <div>
+                                                            <span class="text"><input type="text" name="username" value="<?php echo set_value('username'); ?>" /></span>
+                                                            <?php if(form_error('username')) {?>
+                                                            <span class="error"><?php echo form_error('username'); ?></span>
+                                                            <?php }?>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Password:</label>
+                                                            <div><span class="text"><input type="password" name="password" <?php echo set_value('password'); ?> /></span>
+                                                            <?php if(form_error('password')) {?>
+                                                            <span class="error"><?php echo form_error('password'); ?></span>
+                                                            <?php }?>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                        <div class="insFieldset">
+                                                        <label>Verify Password:</label>
+                                                            <div><span class="text"><input type="password" name="cpassword" /></span></div>
+                                                            <div class="clear"></div>
+                                                        </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+                                    <div class="block-in-blue block-in-blue-light-green additional-reciep-box">
+			<div class="block-in-holder-blue">
+				<div class="block-in-frame-blue">
+					<div class="title-null">&nbsp;</div>
+					<div class="signup-type signup-type-up">
+						<div class="row">
+							<div class="insFieldset">
+                                                        <div class="timesheet-daily-holder">
+                                                            <span class="timesheet-text">What time do you usually <a href="#">wake up</a> on the <a href="#" class="weekdays">weekdays</a>?</span>
+                                                            <span class="text">
+																	<?php
+																	$this->load->view('users/signup/time',array('title' => 'Weekdays',	'day' => 'weekdays', 'event' => 'Wakeup',	'start' => false, 'end' => false,'class'=>'select-recipe weekend-size'));//'start' => '06:00', 'end' => '11:00'));																	
+																	?>                                                                    
+                                                                </span>
+                                                                <br class="clear" />
+                                                            </div>
+                                                            <div class="timesheet-daily-holder">
+                                                            <span class="timesheet-text">What time do you usually <a href="#" class="gotobed">go to bed</a> on the <a href="#" class="weekdays">weekdays</a>?</span>
+                                                            <span class="text">
+                                                                    <?php
+																	$this->load->view('users/signup/time',array('title' => 'Weekdays',	'day' => 'weekdays', 'event' => 'Bed',	'start' => false, 'end' => false,'class'=>'select-recipe weekend-size'));//'start' => '06:00', 'end' => '11:00'));																	
+																	?>
+                                                                </span>
+                                                                <div class="clear"></div>
+                                                            </div>
+                                                            <div class="timesheet-daily-holder">
+                                                            <span class="timesheet-text">What time do you usually <a href="#">wake up</a> on the <a href="#" class="weekends">weekends</a>?</span>
+                                                            <span class="text">
+                                                                    <?php
+																	$this->load->view('users/signup/time',array('title' => 'Weekends',	'day' => 'weekends', 'event' => 'Wakeup',	'start' => false, 'end' => false,'class'=>'select-recipe weekend-size'));//'start' => '06:00', 'end' => '11:00'));																	
+																	?> 
+                                                                </span>
+                                                                <div class="clear"></div>
+                                                            </div>
+                                                            <div class="timesheet-daily-holder">
+                                                            <span class="timesheet-text">What time do you usually <a href="#" class="gotobed">go to bed</a> on the <a href="#" class="weekends">weekends</a>?</span>
+                                                            <span class="text">
+                                                                    <?php
+																	$this->load->view('users/signup/time',array('title' => 'Weekends',	'day' => 'weekends', 'event' => 'Bed',	'start' => false, 'end' => false,'class'=>'select-recipe weekend-size'));//'start' => '06:00', 'end' => '11:00'));																	
+																	?> 
+                                                                </span>
+                                                                <br class="clear" />
+                                                            </div>
+                                                        </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="btn-area-form btn-area-form-right">
+			<div class="sexybutton-area">
+				<input type="hidden" name="uid" value="<?php echo $user[0]->id; ?>" >
+				<button type="submit" class="sexybutton sexysimple sexygreen btn-submit"><span class="save">Save</span></button>
+			</div>
+			<input type="submit" class="btn-cancel" value="Cancel"/>
+			<strong>or</strong>
+		</div>
+                                    <div class="clear">&nbsp;</div>
+	</fieldset>
+</form>
+<?php /*
+<div style="font-weight:bold;color:#CC0000;">
+	<?php
+	if(!empty($error)) { echo "<br />".$error."<br />"; }
+	echo validation_errors();
+	?>
+</div>
+<?php
+*/
+?>

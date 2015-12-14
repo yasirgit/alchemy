@@ -1,0 +1,85 @@
+.hours-box,
+.image-box,
+.status-box,
+.tabs-holder .tabset li span,
+.schedule-block .block{margin-top: expression(this.parentNode.offsetHeight > this.offsetHeight ? ((this.parentNode.offsetHeight-this.offsetHeight)/2 + "px") : "0");}
+* html .png,
+.image-box-right img{
+position:relative;
+behavior: expression((this.runtimeStyle.behavior="none")&&(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" &&
+this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none",
+this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
+this.src = "images/none.gif"):(this.origBg = this.origBg? this.origBg
+:this.currentStyle.backgroundImage.toString().replace('url("','').replace('")',''),
+this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')",
+this.runtimeStyle.backgroundImage = "none")),this.pngSet=true)
+);
+}
+* html .edit-box .l{
+filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-edit-l.png', sizingmethod='crop');
+background:url(none.gif);
+}
+* html .edit-box .r{
+filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-edit-r.png', sizingmethod='crop');
+background:url(none.gif);
+}
+* html .edit-box .c{
+filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-edit-c.png', sizingmethod='scale');
+background:url(none.gif);
+}
+* html .popup .t{
+filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-popup-t.png', sizingmethod='crop');
+background:url(none.gif);
+}
+* html .popup .b{
+filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-popup-b.png', sizingmethod='crop');ackground:url(none.gif);
+}
+* html .popup .center{
+filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-popup-c.png', sizingmethod='scale');
+background:url(none.gif);
+}
+* html .tabs-holder .tab-content .buttons-holder{
+filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-buttons-holder.png', sizingmethod='scale');
+background:url(none.gif);
+}
+* html .schedule-block .block div span{
+filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-enter.png', sizingmethod='scale');
+background:url(none.gif);
+}
+* html .decor-right{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/ico-circle.png', sizingmethod='crop');
+	background:url(none.gif);
+}
+* html .signup .btn-go,
+* html .signup-text .btn-go{
+	filter:progid:dximagetransform.microsoft.alphaimageloader(src='images/btn-go.png', sizingmethod='crop');
+	background:url(none.gif);
+}
+* html .sub-page-yellow .tabset a{
+	filter: progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-tabs.png', sizingmethod='crop');
+	background:none;
+}
+* html .sub-page-blue .tabset-large a{
+	filter: progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-tabs-large.png', sizingmethod='crop');
+	background:none;
+}
+* html .sub-page-yellow .tabset .active span{margin:35px 0 0;}
+*+html .sub-page-yellow .tabset .active span{margin:35px 0 0;}
+* html .sub-page-yellow .tabset-large .active span{margin:44px 0 0;}
+*+html .sub-page-yellow .tabset-large .active span{margin:44px 0 0;}
+* html .sub-page-yellow .tabset .active .link-indent span{margin:37px 0 0;}
+*+html .sub-page-yellow .tabset .active .link-indent span{margin:37px 0 0;}
+* html .sub-page-blue .tabset .active span{margin:35px 0 0;}
+*+html .sub-page-blue .tabset .active span{margin:35px 0 0;}
+* html .sub-page-blue .tabset-large .active span{margin:44px 0 0;}
+*+html .sub-page-blue .tabset-large .active span{margin:44px 0 0;}
+* html .sub-page-blue .tabset .active .link-indent span{margin:37px 0 0;}
+*+html .sub-page-blue .tabset .active .link-indent span{margin:37px 0 0;}
+* html .recipe-info-box th,
+* html .recipe-info-box td,
+* html .recipe-info-box .odd td{background-image: expression( (this===this.parentNode.childNodes[0]) ? "none" : "auto");}
+* html .recipe-info-box td{text-align: expression( (this===this.parentNode.childNodes[0]) ? "left" : "auto");}
+* html .tab-holder .gallery ul li .arrow {
+	background-position:-9999px -9999px;
+	filter: progid:dximagetransform.microsoft.alphaimageloader(src='images/gallery-active-arrow.png', sizingmethod='crop');
+}

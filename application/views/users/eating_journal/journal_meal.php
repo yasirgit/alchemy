@@ -1,0 +1,94 @@
+<div class="l"></div>
+<div class="c">
+	<ul>
+		<?php		
+		////////////////////////////		
+		if ($time->type == "Breakfast" || $time->type == "Lunch" || $time->type == "Dinner" || $time->type == "Snack")
+		{ 
+		?>		
+		<?php
+			if (@$time->journal && @$time->journal[0]->planned == 1)
+			{
+				?>
+				<span>SUGGESTED MEAL:</span>
+				<li><a href="javascript:void(0);" class="ate"		utID="<?=$time->utID?>" date="<?=$time->date?>" ujID="<?=$time->journal[0]->ujID?>" time="<?=$time->time?>">ATE THIS</a></li>
+				<li><a href="javascript:void(0);" class="add clear"	utID="<?=$time->utID?>" date="<?=$time->date?>" ujID="<?=$time->journal[0]->ujID?>" time="<?=$time->time?>">ATE SOMETHING ELSE</a></li>
+				<li><a href="javascript:void(0);" class="skipped"	utID="<?=$time->utID?>" date="<?=$time->date?>" ujID="<?=$time->journal[0]->ujID?>" time="<?=$time->time?>">SKIPPED</a></li>
+				<?php
+			}
+			elseif (@$time->journal && $time->journal[0]->name != "Skipped this meal")
+			{
+				
+				$content_for_share="";
+				$title="";
+				for($tp=0;$tp<count($time->journal);$tp++)
+				{
+					$content_for_share.=$time->journal[$tp]->items[0]->entryname."<br />";
+					$title.=$time->journal[$tp]->name."\r\n";
+				}
+				$url=urlencode($this->config->item('base_url'));
+			?>
+				
+			<meta property="og:title" content="<?php echo $title;?>"/>			
+			<meta property="og:url" content="<?php echo $url;?>"/>									
+			<meta property="og:description" content="<?php echo $content_for_share;?>"/>
+								
+				<li><a href="javascript:void(0);" class="editJournal" 	utID="<?=$time->utID?>" date="<?=$time->date?>" ujID="<?=$time->journal[0]->ujID?>" time="<?=$time->time?>">EDIT</a></li>
+				<li><a href="javascript:void(0);" class="delete" 		utID="<?=$time->utID?>" date="<?=$time->date?>" ujID="<?=$time->journal[0]->ujID?>" time="<?=$time->time?>">DELETE</a></li>
+				<?php
+				/*
+				?>				
+				<li><a class="share" href="http://www.facebook.com/sharer.php?u=<?php echo $url;?>&t=<?php echo $title;?>" target="_blank"		utID="<?=$time->utID?>" date="<?=$time->date?>" time="<?=$time->time?>">SHARE Facebook</a></li>				
+				<li><a class="share" href="http://twitter.com/home?status=<?php echo $title;?> <?php echo $url;?>" title="Click to share this post on Twitter" target="_blank">SHARE Twitter</a></li>				
+				<?php */?>
+				<?php
+			}
+			elseif (@!$time->journal)
+			{				
+				?>
+				<li><a href="javascript:void(0);" class="add"			utID="<?=$time->utID?>">ADD <?=strtoupper($time->type)?></a></li>
+				<li><a href="javascript:void(0);" class="skip"		utType="<?php echo $time->type; ?>" now="<?php echo strtotime("now");?>" crtime="<?php echo strtotime($time->date." ".$time->time);?>"	utID="<?=$time->utID?>">SKIP <?=strtoupper($time->type)?></a></li>
+				<?php
+			}
+		?>		
+		<?php	
+		}
+		else if($time->type == "Wakeup")
+		{			
+		?>
+			<li><a href="javascript:void(0);" class="editWaketime"	utID="<?php echo $utID;?>" type="<?php echo $type;?>" >EDIT</a></li>
+		<?php
+		}
+		else if(!isset($jornel_type)&&$time->type == "Bed")
+		{
+		?>
+		<li><a href="javascript:void(0);" class="editBedtime"	utID="<?php echo $utID;?>" type="<?php echo $type;?>">EDIT</a></li>
+		<?php
+		}
+		else if(isset($time->type)&&$time->type=="sleeptime")
+		{
+		?>
+		 <li><a href="javascript:void(0);" class="editSleeptime" ujsid="<?php echo $time->id; ?>" >EDIT</a></li>
+		<?php
+		}
+		else	// must be exercise
+		{
+				if (@$time->journal)
+				{
+					?>
+					<li><a href="javascript:void(0);" class="editJournal"	utID="<?=$time->utID?>" date="<?=$time->date?>" ujID="<?=$time->journal[0]->ujID?>">EDIT</a></li>
+					<li><a href="javascript:void(0);" class="delete"		utID="<?=$time->utID?>" date="<?=$time->date?>" ujID="<?=$time->journal[0]->ujID?>">DELETE</a></li>
+					<?php
+				}
+				else
+				{
+					?>
+					<li><a href="javascript:void(0);" class="add"			utID="<?=$time->utID?>">ADD</a></li>
+					<li><a href="javascript:void(0);" class="skip"		 utType="<?php echo $time->type; ?>" utID="<?=$time->utID?>">SKIPP <?=strtoupper($time->type)?></a></li>
+					<?php
+				}			
+		}
+		?>		
+	</ul>
+</div>
+<div class="r"></div>

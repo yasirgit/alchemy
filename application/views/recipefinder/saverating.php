@@ -1,0 +1,1 @@
+<img src="htdocs/images/img-stars<?php echo $myRecipeReview['rating']?>.gif" />

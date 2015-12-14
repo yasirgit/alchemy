@@ -1,0 +1,48 @@
+/*.searchMainSize { margin-left:-6px; width:910px; }*/
+.searchResult
+			{
+				padding:0px;margin:0px;
+			}
+.searchResult tr:hover
+			{
+				background:#58ACFA;color:#FFF;
+			}
+table.noHover tr:hover {background:none !important;color:#FFF !important;}
+tr.noHover:hover {background:none !important;color:#FFF !important;}
+
+.searchResult th
+			{
+				height:30px;
+				margin:0px;
+				padding:3px;
+				/*background-image:url(htdocs/images/bg_table_header.jpg) repeat-x;*/
+				background-image:url(../../../../htdocs/images/bg_table_header.jpg) repeat-x;
+				color:#000;
+				font-weight:bold;
+				text-align:center;
+				border-left:1px solid #211f1f;
+				border-top:1px solid #211f1f;
+			}
+.searchResult td
+			{
+				margin:0px;
+				padding:3px;
+				color:#000;font-weight:normal;
+				text-align:left;
+				border-left:1px solid #211f1f;
+				border-top:1px solid #211f1f;
+				height:30px;
+			}
+.searchResult .trCell1
+			{
+				background:#F5EFFB;
+				cursor:pointer;
+				cursor:hand;
+			}
+.searchResult .trCell2
+			{
+				background:#E6E6E6;
+				cursor:pointer;
+				cursor:hand;
+			}
+

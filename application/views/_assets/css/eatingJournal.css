@@ -1,0 +1,48 @@
+.error		{ color: #f00; }
+
+h3			{
+				margin:0px;padding:2px;font-family:arial;font-size:16px;text-transform:none;color:#444444;
+			}
+#foodSearchResults
+			{
+				background:#FFFFFF;padding:2px 2px 2px 2px;
+				font-size:14px;line-height:12px;
+			}
+#foodSearchResults a
+			{
+				color:#306EFF;
+			}
+#foodSearchResults img
+			{
+				vertical-align: middle; width:7px; border:0px; height:7px;
+			}
+#foodSearchResults hr
+			{
+				width:95%;color:#306EFF;
+			}
+#foodSearchResults .smallText
+			{
+				font-size:11px;
+			}
+
+table.ingredient
+			{
+				border-bottom:1px solid #C3DBED !important;
+				padding:0px;
+				line-height:14px;
+			}
+table.ingredient a.edit
+			{
+				color:#38ACEC;font-size:12px;
+			}
+.getRecipes	{
+				cursor:hand;cursor:pointer;
+				margin:2px;
+				border:1px solid #FFF8C6;
+			}
+.getRecipes	div
+			{
+				float:left;width:150px;
+				padding:2px;
+			}
+

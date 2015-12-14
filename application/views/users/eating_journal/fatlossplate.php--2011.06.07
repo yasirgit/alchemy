@@ -1,0 +1,46 @@
+<?php
+if(!empty($fatlossdata)&&$fatlossdata['isfatlosplate']==0)
+{		
+	$message="";
+	if($fatlossdata['isSkip']==1)
+	{
+		$message.="There was too much time between meals";
+	}
+	else
+	{
+		if($fatlossdata['type']=="Snack")
+		{		
+			if($fatlossdata['iscalorieOk']==0)
+			$message.="#Calories ".$fatlossdata['total_calories']." (FLP: ".$fatlossdata['calories1']."<=Calories<=".$fatlossdata['calories2'].")"."<Br />";
+		}
+		else
+		{		
+			if($fatlossdata['iscalorieOk']==0)
+			$message.="#Calories ".$fatlossdata['total_calories']." (FLP: ".$fatlossdata['calories1']."<=Calories<=".$fatlossdata['calories2'].")"."<Br />";
+			
+			if($fatlossdata['isfatOK']==0)
+			$message.="#Fat ".$fatlossdata['total_fat']." (FLP: ".$fatlossdata['fat1']."<=Fat<=".$fatlossdata['fat2'].")"."<Br />";		
+			
+			if($fatlossdata['iscarbsOk']==0)
+			$message.="#Carb ".$fatlossdata['total_carb']." (FLP: ".$fatlossdata['carb1']."<=Carb<=".$fatlossdata['carb2'].")"."<Br />";				
+			
+			if($fatlossdata['isproteingOk']==0)
+			$message.="#Protein ".$fatlossdata['total_protein']." (FLP: Protein>=".$fatlossdata['protein'].")"."<Br />";						
+		}
+	}	
+?>
+	<script type="text/javascript">
+	$(function() 
+	{
+		$('#<?php echo $classType;?>').tooltip({
+			delay: 0,
+			showURL: false,
+			bodyHandler: function() {
+				return "<?php echo $message;?>";
+			}
+		});
+	});
+	</script>
+<?php
+}
+?>

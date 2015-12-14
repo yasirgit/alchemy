@@ -1,0 +1,1 @@
+<div class="footer-banner"><img src="htdocs/images/flat-loss-footer.png" alt="" /></div>

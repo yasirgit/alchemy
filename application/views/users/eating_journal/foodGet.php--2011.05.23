@@ -1,0 +1,69 @@
+<table id="getQuantity_table">
+<input type="hidden" id="food_id" value="<?=$foods['food_id']?>" />
+	<tbody>
+		<?php
+		if(isset($_POST['pdetails'])&&$_POST['pdetails']==1)
+		{
+		?>
+		<tr>
+			<td colspan="2">
+				<ul>
+				<?php	
+					
+					foreach($foods['servings'][0]['serving'] as $serv)
+					echo "<li>".$serv['serving_description']."</li>";
+				?>
+				</ul>
+			</td>
+		</tr>
+		<?php
+		}
+		?>	
+		<tr>
+			<td width="70">Item: </td>
+			<td id="name"><?=$foods['food_name']?></td>
+		</tr>		
+		<!--
+		<tr>
+			<td>Description: </td>
+			<td><input id="entryname" value="" style="width:280px;" type="text" /></td>
+		</tr> -->
+		<tr>
+			<td>Quantity: </td>
+			<td>
+				<input id="qty" value="1" style="padding-top:1px; height:14px; width:30px; font-size:8pt; vertical-align:middle;" type="text" />
+				<select id="portionid" autocomplete="off" style="height:20px; padding-bottom:0px; vertical-align:middle;">
+					<?php
+					foreach ($foods["servings"][0]["serving"] AS $serving)
+					{
+						$nutrition = $serving['serving_id']."~".$serving["calories"]."~".$serving["carbohydrate"]."~".$serving["protein"]."~".$serving["fat"];
+						?><option value="<?=$nutrition?>"><?=$serving['measurement_description']?></option><?php
+					}
+					?>
+				</select>
+			</td>
+		</tr>
+		<?php
+		if ($foods['type'] == "add")
+		{
+			?>
+			<tr id="add_quantity">
+				<td colspan="2">
+					<input type="button" id="add" value="Add" /> or <input type="button" id="cancel" value="Cancel" />
+				</td>
+			</tr>
+			<?php
+		}
+		else
+		{
+			?>
+			<tr id="edit_quantity">
+				<td colspan="2">
+					<input type="button" id="edit" value="Edit" /> or <input type="button" id="cancel" value="Cancel" />
+				</td>
+			</tr>
+			<?php
+		}
+		?>
+	</tbody>
+</table>

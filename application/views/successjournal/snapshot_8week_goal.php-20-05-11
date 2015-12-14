@@ -1,0 +1,159 @@
+<?php
+if(count($weekGoal)>0){
+ foreach ($weekGoal as $key => $wlist){ 
+   $lose= $wlist['pounds']; 
+  ///remaining date count
+ $enddate=  $wlist['endingDate']; 
+ $todate=date('Y-m-d');
+   if($enddate==$todate)
+   {
+      ?>
+	  <div class="ultimate-goal week-goal">
+        <div class="ultimate-bottom-round">
+                <div class="ultimate-title">
+                       <h2 class="meter-title">8 Week Goal</h2>
+                       <div class="loser-quantity"><span>Lose <?php echo $lose;  ?> lbs</span></div>
+                        <div class="clear">&nbsp;</div>
+                 </div>
+                 <div class="time-label">Time Remaining</div>
+				    <ul class="snapshot-time-count">
+			                   <li>0<small>Days</small></li>
+			                   <li>0<small>Hours</small></li>
+			                   <li>0<small>Minutes</small></li>
+			                   <li>0<small>Second</small></li>
+		                 </ul>
+				       <div style="margin:auto;text-align:center; width:235px;color:#C3161C;font-weight:bold;font-size:20px; ">                         Your time is over!
+					  </div>  
+
+                  <div class="ultimate-miter">
+				     <div class="ppbar_set">
+			                   <div id="eightweekGoal"></div>
+		             </div>
+				 </div>
+        </div>
+</div>
+	  <?php
+   }else{
+
+$dt=explode('-',$enddate); $x=1;
+$s=$dt[1]-$x;
+ $edate=$dt[0].",".$s.",".$dt[2];
+?>
+
+<script>
+	$(function() {
+		$( "#eightweekGoal" ).progressbar({
+			value:20 <?php // echo $value; ?>
+		});
+	});
+</script>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+          var austDay = new Date(<?php echo $edate; ?>); 
+          $('#defaultCountdown').countdown({until:austDay});
+    
+   });
+</script>
+<?php
+	 foreach($last_dayMsr as $ulist){ $curWeight= $ulist['um_bweight']; }
+		 //Pounds lost comes from the user’s current measurements minus their original measurements
+		     //echo $row['weight'];
+		     $loseweight = $row['weight']-$curWeight;  
+			 
+			 if($loseweight>=$lose)
+			 {
+			    $scalling = (float) (219/25)  ;
+				$dynWidth = $lose * $scalling;
+			  ?>
+<div class="ultimate-goal week-goal">
+        <div class="ultimate-bottom-round">
+                <div class="ultimate-title">
+                       <h2 class="meter-title">8 Week Goal</h2>
+                       <div class="loser-quantity"><span>Lose <?php echo $lose;  ?> lbs</span></div>
+                        <div class="clear">&nbsp;</div>
+                 </div>
+                 <div class="time-label">Time Remaining</div>
+				    <ul class="snapshot-time-count">
+			                   <li>0<small>Days</small></li>
+			                   <li>0<small>Hours</small></li>
+			                   <li>0<small>Minutes</small></li>
+			                   <li>0<small>Second</small></li>
+		                 </ul>
+				       <div style="margin:auto;text-align:center; width:235px;color:#C3161C;font-weight:bold;font-size:20px; ">                         Congratulations!<br/>
+					    You've hit your goal!<br/>
+					  <span style="font-size:16px; font-weight:normal;">Dont't forget to claim your reward,</span>
+					  </div>  
+
+                 <div class="ultimate-miter">
+				     
+					 <div class="comm-progress week-bar not-full" <?php echo "style='width:".$dynWidth."px;'"  ;?>>
+					 -<?php echo $lose; ?> lbs
+					 <div class="left-volume"></div>
+					 </div>
+				 </div>
+        </div>
+</div>
+			 <?php
+			 }
+			 else{
+		   
+			 $scalling = (float) (219/25)  ;
+			 $diffWeight=$loseweight * $scalling;
+			 if($diffWeight < 219)
+			 {
+			   $dynWidth = $diffWeight;
+			 }
+			 else
+			 {
+			    $dynWidth = 219;
+			 }
+?>
+<div class="ultimate-goal week-goal">
+        <div class="ultimate-bottom-round">
+                <div class="ultimate-title">
+                       <h2 class="meter-title">8 Week Goal</h2>
+                       <div class="loser-quantity"><span>Lose <?php echo $lose;  ?> lbs</span></div>
+                        <div class="clear">&nbsp;</div>
+                 </div>
+                 <div class="time-label">Time Remaining</div>
+				 
+				        <div id="defaultCountdown" class="snapshot-time-count"></div>
+
+                 <div class="ultimate-miter">
+				   <!--  <div class="ppbar_set">
+			                   <div id="eightweekGoal"></div>
+		             </div>-->
+					 <div class="comm-progress week-bar not-full" <?php echo "style='width:".$dynWidth."px;'"  ;?>>-<?php echo $loseweight; ?> lbs<div class="left-volume"></div></div>
+				 </div>
+        </div>
+</div>
+<?php } }
+}}
+else{
+?>
+<div class="ultimate-goal week-goal">
+        <div class="ultimate-bottom-round">
+                <div class="ultimate-title">
+                       <h2 class="meter-title">8 Week Goal</h2>
+                       <div class="loser-quantity"><span>Lose 0 lbs</span></div>
+                        <div class="clear">&nbsp;</div>
+                 </div>
+                 <div class="time-label">Time Remaining</div>
+				 
+				       	<ul class="snapshot-time-count">
+			                   <li>0<small>Days</small></li>
+			                   <li>0<small>Hours</small></li>
+			                   <li>0<small>Minutes</small></li>
+			                   <li>0<small>Second</small></li>
+		                 </ul>
+                 <div class="ultimate-miter">
+				     <div class="ppbar_set">
+			                   <div id="eightweekGoal"></div>
+		             </div>
+				 </div>
+        </div>
+</div>
+<?php
+}
+?>
